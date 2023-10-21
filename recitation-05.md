@@ -52,4 +52,3 @@ Python uses a sorting algorithm called [*Timsort*](https://en.wikipedia.org/wiki
 sorting function `sorted`, conducting the tests in 3b above. 
 
 
-
