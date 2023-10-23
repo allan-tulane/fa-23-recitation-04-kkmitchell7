@@ -36,6 +36,13 @@ def time_search(sort_fn, mylist):
     return (time.time() - start) * 1000
     ###
 
+def selection_sort(L):
+    if (len(L) == 1):
+        return(L)
+    else:
+        m = L.index(min(L))
+        L[0], L[m] = L[m], L[0]
+        return    selection_sort(L[1:])
 
 def return_first_in_list(a):
     return a[0]
@@ -66,10 +73,10 @@ def compare_sort(sizes=[50, 100, 200, 300, 400,500,600,700, 800]):
         # create list in ascending order
         mylist = list(range(size))
         # shuffles list if needed
-        #random.shuffle(mylist)
+        random.shuffle(mylist)
         result.append([
             len(mylist),
-            time_search(sorted, mylist),
+            time_search(selection_sort, mylist),
             time_search(qsort_random_pivot, mylist),
         ])
     return result
@@ -78,12 +85,13 @@ def compare_sort(sizes=[50, 100, 200, 300, 400,500,600,700, 800]):
 def print_results(results):
     """ change as needed for comparisons """
     print(tabulate.tabulate(results,
-                            headers=['n', 'sorted', 'qsort-random-pivot'],
+                            headers=['n', 'selection sort', 'qsort-random-pivot'],
                             floatfmt=".3f",
                             tablefmt="github"))
 
 def test_print():
     print_results(compare_sort())
+
 
 random.seed()
 test_print()
